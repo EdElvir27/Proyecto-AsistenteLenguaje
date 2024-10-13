@@ -1,18 +1,7 @@
 import cv2
 
 def initialize_camera(width=1920, height=1080, fps=30):
-    """
-    Initializes the camera with specified resolution and settings.
-    
-    Parameters:
-        width (int): The width of the video capture in pixels.
-        height (int): The height of the video capture in pixels.
-        fps (int): Frames per second for the video capture.
-        
-    Returns:
-        cv2.VideoCapture: The initialized camera object or None if failed.
-    """
-    # Capturar video desde la cámara y establecer resolución alta
+      # Capturar video desde la cámara y establecer resolución alta
     cap = cv2.VideoCapture(0)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
