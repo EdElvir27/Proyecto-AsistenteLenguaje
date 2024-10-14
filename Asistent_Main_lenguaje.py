@@ -18,20 +18,40 @@ if cap is None:
 # Crear la ventana principal de tkinter
 root = tk.Tk()
 root.title("Asistente de Lenguaje de Señas")
-root.geometry("1000x700")
+root.geometry("800x600")
 root.configure(bg='#F0FFFF')
 
-# Crear un label para mostrar el video
-camera_label = tk.Label(root)
-camera_label.pack(pady=10)
+# Centrar la ventana en la pantalla
+window_width = 800
+window_height = 600
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
 
-# Crear un botón para cerrar la aplicación
-close_button = tk.Button(root, text="Cerrar", command=root.destroy, bg='red', fg='white', font=('Arial', 12, 'bold'))
-close_button.pack(pady=10)
+position_top = int(screen_height / 2 - window_height / 2)
+position_right = int(screen_width / 2 - window_width / 2)
+
+root.geometry(f'{window_width}x{window_height}+{position_right}+{position_top}')
+
+# Crear un layout de dos columnas usando grid
+root.grid_rowconfigure(0, weight=1)
+root.grid_columnconfigure(0, weight=1)  # Columna izquierda
+root.grid_columnconfigure(1, weight=1)  # Columna derecha (para el video)
+
+# Crear un frame a la izquierda (espacio reservado para futuros componentes)
+left_frame = tk.Frame(root, width=300, height=600, bg='#E0E0E0')  # Color gris suave
+left_frame.grid(row=0, column=0, padx=10, pady=10)
+
+# Crear un label para mostrar el video en la columna derecha
+camera_label = tk.Label(root)
+camera_label.grid(row=0, column=1, padx=10, pady=10, sticky='n')  # Video alineado al norte (parte superior)
+
+# Crear un botón para cerrar la aplicación (parte inferior derecha)
+close_button = tk.Button(root, text="Cerrar", command=root.destroy, bg='#FF6347', fg='white', font=('Arial', 12, 'bold'))
+close_button.place(relx=0.9, rely=0.9, anchor='center')  # Botón en la parte inferior derecha
 
 # Crear un label para mostrar el gesto reconocido
 gesture_label = tk.Label(root, text="", font=('Arial', 20, 'bold'), bg='#F0FFFF')
-gesture_label.pack(pady=10)
+gesture_label.grid(row=2, column=1, pady=10)
 
 # Función para actualizar el feed de la cámara
 def update_frame():
@@ -61,7 +81,7 @@ def update_frame():
 
     # Convertir nuevamente el frame a BGR para mostrar con OpenCV y redimensionar para tkinter
     frame_resized = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-    frame_resized = cv2.resize(frame_resized, (900, 600))
+    frame_resized = cv2.resize(frame_resized, (640, 480))
 
     # Convertir el frame en un formato que tkinter pueda mostrar
     imgtk = ImageTk.PhotoImage(image=Image.fromarray(frame_resized))

@@ -1,6 +1,6 @@
 import cv2
 
-def initialize_camera(width=1920, height=1080, fps=30):
+def initialize_camera(width=1250, height=720, fps=15):
       # Capturar video desde la cámara y establecer resolución alta
     cap = cv2.VideoCapture(0)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
