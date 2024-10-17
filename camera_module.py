@@ -1,6 +1,6 @@
 import cv2
 
-def initialize_camera(width=1250, height=720, fps=15):
+def initialize_camera(width=1250, height=720, fps=60):
       # Capturar video desde la cámara y establecer resolución alta
     cap = cv2.VideoCapture(0)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
@@ -8,9 +8,8 @@ def initialize_camera(width=1250, height=720, fps=15):
     cap.set(cv2.CAP_PROP_FPS, fps)
 
     # Ajustar el balance de blancos automáticamente
-    cap.set(cv2.CAP_PROP_AUTO_WB, 0)  #Desactivar balance de blancos automático
-    cap.set(cv2.CAP_PROP_WB_TEMPERATURE, 4500)
-
+    cap.set(cv2.CAP_PROP_AUTO_WB,1)
+   
     if not cap.isOpened():
         print("Error: No se pudo acceder a la cámara.")
         return None
