@@ -7,7 +7,7 @@ from gesture_recognition import recognize_gesture
 
 # Inicializar Mediapipe
 mp_hands = mp.solutions.hands
-hands = mp_hands.Hands(max_num_hands=2)  # Detectar hasta dos manos
+hands = mp_hands.Hands(max_num_hands=2, min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
 # Inicializar la cámara usando el módulo de cámara
 cap = initialize_camera()
@@ -38,16 +38,16 @@ root.grid_columnconfigure(0, weight=1)  # Columna izquierda
 root.grid_columnconfigure(1, weight=1)  # Columna derecha (para el video)
 
 # Crear un frame a la izquierda (espacio reservado para futuros componentes)
-left_frame = tk.Frame(root, width=300, height=600, bg='#E0E0E0')  # Color gris suave
+left_frame = tk.Frame(root, width=300, height=600, bg='#E0E0E0')
 left_frame.grid(row=0, column=0, padx=10, pady=10)
 
 # Crear un label para mostrar el video en la columna derecha
 camera_label = tk.Label(root)
-camera_label.grid(row=0, column=1, padx=10, pady=10, sticky='n')  # Video alineado al norte (parte superior)
+camera_label.grid(row=0, column=1, padx=10, pady=10, sticky='n')
 
-# Crear un botón para cerrar la aplicación (parte inferior derecha)
+# Crear un botón para cerrar la aplicación
 close_button = tk.Button(root, text="Cerrar", command=root.destroy, bg='#FF6347', fg='white', font=('Arial', 12, 'bold'))
-close_button.place(relx=0.9, rely=0.9, anchor='center')  # Botón en la parte inferior derecha
+close_button.place(relx=0.9, rely=0.9, anchor='center')
 
 # Crear un label para mostrar el gesto reconocido
 gesture_label = tk.Label(root, text="", font=('Arial', 20, 'bold'), bg='#F0FFFF')
@@ -61,7 +61,7 @@ def update_frame():
         print("No se pudo capturar el video.")
         return
 
-    # Convertir el frame a RGB y redimensionar para mejorar rendimiento
+    # Convertir el frame a RGB y redimensionar
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     frame = cv2.resize(frame, (640, 480))
 
@@ -79,9 +79,8 @@ def update_frame():
         gesture_label.config(text="Gesto: desconocido")
         print("No se detectaron manos")
 
-    # Convertir nuevamente el frame a BGR para mostrar con OpenCV y redimensionar para tkinter
+    # Convertir nuevamente el frame a BGR para mostrar con OpenCV
     frame_resized = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-    frame_resized = cv2.resize(frame_resized, (640, 480))
 
     # Convertir el frame en un formato que tkinter pueda mostrar
     imgtk = ImageTk.PhotoImage(image=Image.fromarray(frame_resized))
