@@ -60,7 +60,9 @@ def update_frame():
     if not ret:
         print("No se pudo capturar el video.")
         return
-
+     # Voltear el frame horizontalmente (para que no se vea como espejo)
+    frame = cv2.flip(frame, 1)  # Voltea el frame horizontalmente
+    
     # Convertir el frame a RGB y redimensionar
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     frame = cv2.resize(frame, (640, 480))
