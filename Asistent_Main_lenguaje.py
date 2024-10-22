@@ -7,7 +7,9 @@ from gesture_recognition import recognize_gesture
 
 # Inicializar Mediapipe
 mp_hands = mp.solutions.hands
-hands = mp_hands.Hands(max_num_hands=2, min_detection_confidence=0.5, min_tracking_confidence=0.5)
+# Grado de sensibilidad
+hands = mp_hands.Hands(max_num_hands=2, min_detection_confidence=0.5, min_tracking_confidence=0.5) 
+
 
 # Inicializar la cámara usando el módulo de cámara
 cap = initialize_camera()
@@ -64,7 +66,7 @@ def update_frame():
     frame = cv2.flip(frame, 1)  # Voltea el frame horizontalmente
     
     # Convertir el frame a RGB y redimensionar
-    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    #frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     frame = cv2.resize(frame, (640, 480))
 
     # Procesar la imagen con Mediapipe
