@@ -66,7 +66,7 @@ def update_frame():
     frame = cv2.flip(frame, 1)  # Voltea el frame horizontalmente
     
     # Convertir el frame a RGB y redimensionar
-    #frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     frame = cv2.resize(frame, (640, 480))
 
     # Procesar la imagen con Mediapipe
