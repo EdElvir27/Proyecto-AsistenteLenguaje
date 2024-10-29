@@ -85,9 +85,9 @@ def update_frame():
 
     # Convertir nuevamente el frame a BGR para mostrar con OpenCV
     frame_resized = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-
+    #frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     # Convertir el frame en un formato que tkinter pueda mostrar
-    imgtk = ImageTk.PhotoImage(image=Image.fromarray(frame_resized))
+    imgtk = ImageTk.PhotoImage(image=Image.fromarray(frame))
     camera_label.imgtk = imgtk
     camera_label.config(image=imgtk)
 
