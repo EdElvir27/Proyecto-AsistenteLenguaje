@@ -8,7 +8,7 @@ from gesture_recognition import recognize_gesture
 # Inicializar Mediapipe
 mp_hands = mp.solutions.hands
 # Grado de sensibilidad
-hands = mp_hands.Hands(max_num_hands=2, min_detection_confidence=0.5, min_tracking_confidence=0.5) 
+hands = mp_hands.Hands(max_num_hands=2, min_detection_confidence=0.8, min_tracking_confidence=0.8) 
 
 
 # Inicializar la cámara usando el módulo de cámara
