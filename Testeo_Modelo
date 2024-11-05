@@ -87,14 +87,14 @@ class MainWindow(QtWidgets.QWidget):
         self.video_widget.setAlignment(QtCore.Qt.AlignCenter)  # Centrar el video
 
         # Botones y menú desplegable en la parte inferior
-        self.btn_iniciar = QtWidgets.QPushButton("Iniciar")
+        self.btn_Salir = QtWidgets.QPushButton("Salir")
 
         # Menú desplegable
         self.combo_opciones = QtWidgets.QComboBox()
         self.combo_opciones.addItems(["ABECEDARIO", "NUMEROS"])  # Agrega las opciones al desplegable
 
         # Eventos de botones
-        self.btn_iniciar.clicked.connect(self.iniciar_funcion)
+        self.btn_Salir.clicked.connect(self.Salir_funcion)
         self.combo_opciones.currentTextChanged.connect(self.opcion_seleccionada)
 
         # Layouts
@@ -102,14 +102,15 @@ class MainWindow(QtWidgets.QWidget):
         layout_principal.addWidget(self.video_widget, alignment=QtCore.Qt.AlignCenter)  # Centrar el video en el layout
 
         layout_botones = QtWidgets.QHBoxLayout()
-        layout_botones.addWidget(self.btn_iniciar)
+        layout_botones.addWidget(self.btn_Salir)
         layout_botones.addWidget(self.combo_opciones)
         layout_principal.addLayout(layout_botones)
 
         self.setLayout(layout_principal)
 
-    def iniciar_funcion(self):
-        print("Botón 'Iniciar' presionado")
+    def Salir_funcion(self):
+        sys.exit(app.exec_())
+        print("Botón 'Salir' presionado")
 
     def opcion_seleccionada(self, opcion):
         # Condiciones según la opción seleccionada
