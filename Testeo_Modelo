@@ -63,7 +63,7 @@ class VideoWidget(QtWidgets.QLabel):
                     predicted_character = prediction[0]
 
                     # Dibujar resultado
-                    cv2.putText(frame, predicted_character, (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 255, 0), 3)
+                    cv2.putText(frame, predicted_character, (30, 300), cv2.FONT_HERSHEY_SIMPLEX, 4, (30, 144, 255), 2)
 
         # Convertir imagen para PyQt
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
