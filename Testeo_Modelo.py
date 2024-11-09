@@ -17,7 +17,7 @@ class VideoWidget(QtWidgets.QLabel):
     def __init__(self, main_window):
         super().__init__()
         self.main_window = main_window  # Referencia al MainWindow
-        self.cap = cv2.VideoCapture(0)
+        self.cap = cv2.VideoCapture(1)
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_frame)
         self.timer.start(30)
